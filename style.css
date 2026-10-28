@@ -1,0 +1,305 @@
+
+:root {
+  --bg: #f4f6fb;
+  --surface: #ffffff;
+  --text: #1a2035;
+  --muted: #667089;
+  --border: #e0e5f0;
+  --accent: #4f6bf5;
+  --present: #16a36a;
+  --absent: #e5484d;
+  --late: #d9902b;
+  --excused: #3b8fe0;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0b0f17;
+  --surface: #141a26;
+  --text: #e7ecf6;
+  --muted: #8d98b0;
+  --border: #252e40;
+  --accent: #7b93ff;
+  --present: #34d399;
+  --absent: #f87171;
+  --late: #fbbf24;
+  --excused: #60a5fa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.wrap {
+  max-width: 1200px;
+  margin: auto;
+}
+
+header,
+.brand,
+.tools,
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+header {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.brand {
+  gap: 12px;
+}
+
+.logo {
+  font-size: 32px;
+}
+
+h1 {
+  margin: 0 0 5px;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+.sub,
+.note,
+.muted {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+button,
+input,
+select {
+  font: inherit;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+button {
+  cursor: pointer;
+  background: var(--surface);
+  color: var(--text);
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+.primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.card,
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.card .label,
+.card .note {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.card .value {
+  font-size: 27px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.tools {
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  min-width: 120px;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  color: var(--text);
+  background: var(--surface);
+}
+
+.grow {
+  flex: 1;
+  min-width: 180px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 780px;
+}
+
+th,
+td {
+  padding: 13px 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+tr.low {
+  background: color-mix(in srgb, var(--absent) 7%, transparent);
+}
+
+.statuses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.statuses button {
+  padding: 6px 8px;
+  font-size: 12px;
+  background: var(--bg);
+}
+
+.statuses .on.Present {
+  background: var(--present);
+  color: white;
+}
+
+.statuses .on.Absent {
+  background: var(--absent);
+  color: white;
+}
+
+.statuses .on.Late {
+  background: var(--late);
+  color: #111;
+}
+
+.statuses .on.Excused {
+  background: var(--excused);
+  color: white;
+}
+
+.small-btn {
+  border: 0;
+  color: var(--accent);
+  background: transparent;
+  padding: 5px;
+}
+
+.badge {
+  color: var(--absent);
+  font-size: 11px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.empty {
+  text-align: center;
+  padding: 25px;
+  color: var(--muted);
+}
+
+.note {
+  line-height: 1.6;
+  margin-top: 18px;
+}
+
+dialog {
+  width: min(500px, 94vw);
+  max-height: 85vh;
+  overflow-y: auto;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  color: var(--text);
+  padding: 22px;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.form-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.form-grid label {
+  display: grid;
+  gap: 7px;
+}
+
+.form-grid input {
+  width: 100%;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.actions {
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+.history-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+#toast {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text);
+  color: var(--bg);
+  padding: 12px 18px;
+  border-radius: 10px;
+  z-index: 10;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 12px;
+  }
+
+  header {
+    align-items: flex-start;
+  }
+}
