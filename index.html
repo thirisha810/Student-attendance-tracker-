@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendly - Student Attendance Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">🎓</div>
+        <div>
+          <h1>Attendly</h1>
+          <div class="sub">Student attendance tracker</div>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="theme">🌙 Dark</button>
+        <button id="add" class="primary">+ Add student</button>
+      </div>
+    </header>
+
+    <section id="cards" class="cards"></section>
+
+    <section class="panel">
+      <div class="tools">
+        <label class="field">Date
+          <input type="date" id="date">
+        </label>
+
+        <label class="field grow">Search
+          <input id="q" placeholder="Name or student ID...">
+        </label>
+
+        <label class="field">Department
+          <select id="dept">
+            <option value="">All departments</option>
+          </select>
+        </label>
+
+        <label class="field">Status
+          <select id="st">
+            <option value="">All</option>
+            <option>Present</option>
+            <option>Absent</option>
+            <option>Late</option>
+            <option>Excused</option>
+            <option value="_un">Unmarked</option>
+            <option value="_low">Below threshold</option>
+          </select>
+        </label>
+
+        <label class="field">Threshold %
+          <input type="number" id="thr" min="0" max="100" value="75">
+        </label>
+
+        <button id="allp">Mark unmarked present</button>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Student</th>
+              <th>Department</th>
+              <th>Attendance on date</th>
+              <th>Overall %</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="rows"></tbody>
+        </table>
+      </div>
+
+      <div id="empty" class="empty" hidden>No students found.</div>
+    </section>
+
+    <p class="note">
+      Attendance % = (Present + Late) / (Present + Late + Absent) × 100.
+      Excused and unmarked days are excluded.
+    </p>
+  </div>
+
+  <dialog id="sd">
+    <h2 id="sdt">Add student</h2>
+    <form id="sf" class="form-grid">
+      <label>Student ID
+        <input id="fid" required maxlength="20">
+      </label>
+
+      <label>Full name
+        <input id="fname" required maxlength="60">
+      </label>
+
+      <label>Department
+        <input id="fdept" list="dl" required maxlength="40">
+        <datalist id="dl"></datalist>
+      </label>
+
+      <div class="actions">
+        <button type="button" id="sc">Cancel</button>
+        <button type="submit" class="primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="hd">
+    <h2>Attendance history</h2>
+    <div id="hs" class="muted"></div>
+    <div id="hl"></div>
+    <div class="actions">
+      <button id="hc">Close</button>
+    </div>
+  </dialog>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+    </html>
+    
